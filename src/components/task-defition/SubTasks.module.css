@@ -1,0 +1,114 @@
+.task_info_contents {
+    border: 2px solid #919191;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.task_info_contents > div {
+    margin-bottom: 10px;
+}
+
+.task_title {
+    flex-basis: 100%;
+}
+
+.task_estimate,
+.task_status,
+.task_priority {
+    flex-basis: 33%;
+}
+
+.task_expert {
+    flex-basis: 100%;
+}
+
+.task_deadline {
+    flex-basis: 100%;
+    display: flex;
+}
+
+.task_deadline div {
+    flex-basis: 50%;
+}
+
+.form_num {
+    font-family: IRANSans_Bold;
+    font-size: 13px;
+    color: #9563be;
+    margin: 20px 0;
+}
+
+.add_form {
+    display: flex;
+    position: relative;
+}
+
+.add_form::before {
+    content: "";
+    width: calc(100% - 40px);
+    height: 2px;
+    background-color: #9563be;
+    position: absolute;
+    left: 0;
+    right: 40px;
+    top: calc(50% - 1px);
+}
+
+.add_form svg {
+    fill: #9563be;
+    cursor: pointer;
+}
+
+.header_form svg {
+    fill: #FF0007;
+    cursor: pointer;
+}
+
+.message_subTask_form {
+    font-family: IRANSans_Medium;
+    font-size: 16px !important;
+    color: #FF0007 !important;
+}
+
+.subTask_content {
+    border: 2px solid #919191;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.subTask_title,
+.subTask_description {
+    flex-basis: 100%;
+}
+
+.subTask_expert,
+.subTask_status,
+.subTask_startDate,
+.subTask_endDate,
+.subTask_priority,
+.subTask_estimateTime {
+    flex-basis: 50%;
+}
+
+
+
+
+.not_started {
+    border-color: #FF0007C9;
+}
+
+.waiting {
+
+}
+
+.doing {
+    border-color: #9563be;
+}
+
+.completed {
+    border-color: #6FBE63;
+}

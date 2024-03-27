@@ -1,0 +1,26 @@
+.accordion_item div {
+    background-color: #9563be !important;
+}
+
+.accordion_item div a {
+    color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+}
+
+.accordion_item .accordion-button {
+    justify-content: space-between;
+    font-size: 18px;
+}
+
+.accordion_item .accordion-button::after {
+    margin-left: unset !important;
+}
+
+.accordion_item a:hover,
+.accordion_item a:focus,
+.accordion_item a.active {
+    box-shadow: 0 0 5px 2px #5b5262;
+}

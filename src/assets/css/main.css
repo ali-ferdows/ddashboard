@@ -1,0 +1,79 @@
+/* --------------- General -------------- */
+
+.header_titr {
+    font-family: IRANSans_Bold;
+    font-size: 20px;
+    text-align: center;
+    color: #9563be;
+    padding: 20px 0;
+    margin-bottom: 30px;
+}
+
+.success_message {
+    text-align: center;
+    font-family: IRANSans_Bold;
+    font-size: 14px;
+    color: #05FF00A5;
+}
+
+.error_message {
+    text-align: center;
+    font-family: IRANSans_Bold;
+    font-size: 14px;
+    color: #FF0008A5;
+}
+
+/* ----------------------------- */
+
+.homepage_boxes_container {
+    border: 1px solid #9563be;
+    padding: 10px;
+}
+
+.homepage_boxes_container header h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* ----------------- Upcoming Meeting Component ------------------- */
+
+.swiper_upcoming_meeting .swiper-button-prev,
+.swiper_upcoming_meeting .swiper-button-next {
+    color: #9563be;
+}
+
+.swiper_upcoming_meeting .swiper-button-prev:after,
+.swiper_upcoming_meeting .swiper-button-next:after {
+    font-size: 30px;
+}
+
+/* ----------------- Task List Component ----------------- */
+
+.taskslist_progressbar {
+    width: 100px;
+    height: 100px;
+}
+
+.taskslist_progressbar .CircularProgressbar .CircularProgressbar-path {
+    stroke: #9563be;
+}
+
+.taskslist_progressbar .CircularProgressbar .CircularProgressbar-text {
+    fill: #9563be;
+}
+
+/* -------------- Session Definition Component --------------- */
+
+.selected_date_modal div.btn-group {
+    flex-direction: row-reverse;
+}
+
+/* ----------------- Session List Component ----------------- */
+
+.rbc-agenda-view table.rbc-agenda-table .rbc-agenda-time-cell {
+    direction: ltr;
+}
+
+.rbc-event, .rbc-day-slot .rbc-background-event {
+    background-color: #9563be !important;
+}

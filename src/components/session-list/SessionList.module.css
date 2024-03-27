@@ -1,0 +1,42 @@
+.error_message {
+    font-family: IRANSans_Bold;
+    font-size: 16px;
+    text-align: center;
+    color: #FF0008A5;
+}
+
+.action svg {
+    fill: #000000;
+}
+
+.action svg:hover {
+    fill: #9563be;
+    cursor: pointer;
+}
+
+.no_alarm {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.alarm {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    background-color: #ffffff;
+    animation-name: alarm;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes alarm {
+    from {background-color: #ffffff;}
+    to {background-color: #4FFF00C9;}
+}

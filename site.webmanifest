@@ -1,0 +1,33 @@
+{
+  "name": "Cycle Management",
+  "short_name": "CM",
+  "description": "یک پنل مدیریت مخصوص مدیران جزء و اعضا که قابلیت هایی برای مدیریت بهتر تسک و جلسات و گزارش گیری را انجام میدهد.",
+  "icons": [
+    {
+      "src": "src/assets/img/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "src/assets/img/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "src/assets/img/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "src/assets/img/screenshot-1.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

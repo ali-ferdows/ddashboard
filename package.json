@@ -1,0 +1,45 @@
+{
+  "name": "dashboard",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
+    "axios": "^1.6.5",
+    "bootstrap": "^5.3.2",
+    "chart.js": "^4.4.1",
+    "gantt-task-react": "^0.3.9",
+    "jalali-moment": "^3.3.11",
+    "json-server": "^1.0.0-alpha.21",
+    "moment-jalaali": "^0.10.0",
+    "react": "^18.2.0",
+    "react-big-calendar": "^1.8.6",
+    "react-bootstrap": "^2.9.2",
+    "react-bootstrap-icons": "^1.10.3",
+    "react-bootstrap-jalali-calendar": "^0.2.5",
+    "react-chartjs-2": "^5.2.0",
+    "react-circular-progressbar": "^2.1.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "react-router": "^6.21.1",
+    "react-router-dom": "^6.21.1",
+    "swiper": "^11.0.5",
+    "web-vitals": "^3.5.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.0.8"
+  }
+}

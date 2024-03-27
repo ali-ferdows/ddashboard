@@ -1,0 +1,42 @@
+.taskslist_content {
+    box-shadow: 0px 0px 57px 0px rgb(111, 190, 99) inset;
+    border-radius: 10px;
+    padding: 15px !important;
+    width: calc(50% - 10px);
+    margin-bottom: 10px;
+    transition: 1s;
+}
+
+.taskslist_content:hover {
+    background-color: #6FBE63;
+    box-shadow: 0px 0px 57px 0px rgb(255, 255, 255) inset;
+    color: #ffffff;
+}
+
+.taskslist_content:nth-child(even) {
+    margin-left: 10px;
+}
+
+.taskslist_info {
+    width: 50%;
+}
+
+.taskslist_title {
+    font-family: IRANSans_Bold;
+    font-size: 16px;
+}
+
+.taskslist_name {
+    font-family: IRANSans_Medium;
+    font-size: 16px;
+}
+
+.start_date span:last-child {
+    font-family: IRANSans_Light;
+    font-size: 14px;
+}
+
+.end_date span:last-child {
+    font-family: IRANSans_Light;
+    font-size: 14px;
+}

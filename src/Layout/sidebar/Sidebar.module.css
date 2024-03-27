@@ -1,0 +1,10 @@
+.child_item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+}

@@ -1,0 +1,40 @@
+.task_filter_form {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.task_filter_form label {
+    margin-left: 20px;
+}
+
+.task_filter_form > div {
+    margin-left: 20px;
+}
+
+.task_filter_form .task_title,
+.task_filter_form .button,
+.task_filter_form .period {
+    width: 100%;
+}
+
+.task_title, .expert, .period, .status {
+    display: flex;
+}
+
+.task_title input {
+    max-width: 300px;
+}
+
+.expert select {
+    max-width: 200px;
+}
+
+.period input {
+    max-width: 300px;
+    margin-left: 20px;
+}
+
+.status select {
+    max-width: 200px;
+}

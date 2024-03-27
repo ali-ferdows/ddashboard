@@ -1,0 +1,12 @@
+.tasks_item_contents {
+    border: 2px solid #919191;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.message {
+    font-family: IRANSans_Bold;
+    font-size: 16px;
+    color: #9563be;
+}

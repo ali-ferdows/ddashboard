@@ -1,0 +1,11 @@
+.gender {
+    display: flex;
+}
+
+.gender label {
+    flex-basis: 20%;
+}
+
+.gender div {
+    margin-left: 20px;
+}

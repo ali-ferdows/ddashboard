@@ -1,0 +1,25 @@
+.category_form input {
+    max-width: 200px;
+    margin-left: 30px;
+}
+
+.form_group {
+    margin-bottom: 20px;
+}
+
+.button {
+    width: 80px;
+    height: 45px;
+}
+
+.notice {
+    padding: 30px;
+    background-color: #9563be3d;
+    color: #000000;
+    box-shadow: 0 0 30px 10px #9563be inset;
+    margin-bottom: 30px;
+}
+
+.notice ol {
+    margin-bottom: 0;
+}

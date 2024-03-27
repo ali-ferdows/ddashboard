@@ -1,0 +1,21 @@
+.button_add_member button {
+    margin-bottom: 30px;
+}
+
+.table_member_list {
+    text-align: center;
+}
+
+.table_member_list thead {
+    font-family: IRANSans_Medium;
+    font-size: 12px;
+}
+
+.action a {
+    color: #9563be;
+}
+
+.action svg {
+    fill: #9563be;
+    cursor: pointer;
+}
