@@ -11,6 +11,7 @@ import moment from "jalali-moment";
 import { Gantt, ViewMode } from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
 import {fetchAllMembersThunk, memberState} from "../../store/member.js";
+import {ChevronLeft, ChevronRight} from "react-bootstrap-icons";
 
 const GanttChart = () => {
     const { tasksList } = useSelector(tasksListState);
@@ -18,7 +19,7 @@ const GanttChart = () => {
     const [selectedTask, setSelectedTask] = useState({ task: {}, subTasks: [] });
     const [formattedTasks, setFormattedTasks] = useState([]);
     const [message, setMessage] = useState("");
-    const pageNumber = useSelector(pageNumberTasksState);
+    const [pageNumber, setPageNumber] = useState(1);
     const formData = useSelector(taskFilterState);
     const {membersList} = useSelector(memberState);
     const dispatch = useDispatch();
@@ -85,6 +86,16 @@ const GanttChart = () => {
         setFormattedTasks(tasksArray);
     }, [selectedTask]);
 
+    const handleIncrementPageNumber = () => {
+        setPageNumber(pageNumber + 1);
+    }
+
+    const handleDecrementPageNumber = () => {
+        if (pageNumber > 1) {
+            setPageNumber(pageNumber - 1);
+        }
+    }
+
     return (
         <div>
             <h1 className={'header_titr'}>نمودار گانت</h1>
@@ -106,6 +117,16 @@ const GanttChart = () => {
                         </div>
                     </Col>
                 ))}
+
+                <Col xs={12} className={'d-flex justify-content-center'}>
+                    <Button className={'button_form'} onClick={handleIncrementPageNumber} disabled={tasksList.length < 10}>
+                        <ChevronRight size={20} />
+                    </Button>
+                    <span className={styles['page_number']}>{pageNumber}</span>
+                    <Button className={'button_form'} onClick={handleDecrementPageNumber} disabled={pageNumber === 1}>
+                        <ChevronLeft size={20} />
+                    </Button>
+                </Col>
 
                 <Col xs={12}>
                     {formattedTasks.length > 0 && (

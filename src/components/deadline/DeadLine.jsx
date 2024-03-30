@@ -17,7 +17,7 @@ const DeadLine = () => {
     const options = {
         hideTodayButton: false,
         stopChangingYears: false,
-        calendarHeaderColor: "secondary",
+        calendarHeaderColor: "primary",
         hideToolsBar: false,
         calendarToolsColor: "light",
     }

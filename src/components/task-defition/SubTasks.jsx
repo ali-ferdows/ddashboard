@@ -9,6 +9,7 @@ import {fetchAllMembersThunk, memberState} from "../../store/member.js";
 import {Col, Row} from "react-bootstrap";
 import SubTasksList from "./SubTasksList.jsx";
 import AddSubTasksForm from "./AddSubTasksForm.jsx";
+import {statusTaskObj} from "../../Layout/index.js";
 
 const SubTasks = () => {
 
@@ -16,12 +17,6 @@ const SubTasks = () => {
     const {taskItem, loading, error} = useSelector((state) => state.tasksList);
     const {membersList} = useSelector(memberState);
     const dispatch = useDispatch();
-    const statusTaskObj = {
-        'not_started': 'شروع نشده',
-        'waiting': 'در انتظار',
-        'doing': 'در حال انجام',
-        'completed': 'تکمیل شده'
-    };
 
     if (isNaN(parseInt(taskId)) || error) {
         return <NotFoundPage />;
@@ -79,6 +74,10 @@ const SubTasks = () => {
                                         <span>تاریخ پایان تسک : </span>
                                         <span>{taskItem.endDate}</span>
                                     </div>
+                                </div>
+                                <div>
+                                    <span>توضیحات : </span>
+                                    <span>{taskItem.description}</span>
                                 </div>
                             </div>
                         </Col>

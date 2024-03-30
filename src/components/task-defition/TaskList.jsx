@@ -19,6 +19,7 @@ import {
     pageNumberTasksState
 } from "../../store/page_number_tasks.js";
 import {fetchAllMembersThunk, memberState} from "../../store/member.js";
+import {statusTaskObj} from "../../Layout/index.js";
 
 const TaskList = () => {
     const { tasksList, loading, error } = useSelector(tasksListState);
@@ -27,12 +28,6 @@ const TaskList = () => {
     const pageNumber = useSelector(pageNumberTasksState);
     const formData = useSelector(taskFilterState);
     const dispatch = useDispatch();
-    const statusTaskObj = {
-        'not_started' : 'شروع نشده',
-        'waiting' : 'در انتظار',
-        'doing' : 'در حال انجام',
-        'completed' : 'تکمیل شده'
-    }
 
     useEffect(() => {
         dispatch(fetchAllMembersThunk());

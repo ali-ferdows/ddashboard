@@ -67,6 +67,21 @@ const fetchSingleTaskThunk = createAsyncThunk(
     }
 );
 
+const editTaskThunk = createAsyncThunk(
+    'task/editTask',
+    async ({taskEdited, taskId}) => {
+        const response = await fetch(`/api/tasks/${taskId}`, {
+            method : 'PUT',
+            headers : {
+                'Content-Type' : 'application/json',
+            },
+            body : JSON.stringify(taskEdited),
+        });
+        const Data = response.json();
+        return Data;
+    }
+)
+
 const fetchTasksList = createSlice({
     name : 'fetchTask',
     initialState,
@@ -105,9 +120,20 @@ const fetchTasksList = createSlice({
                 state.loading = false;
                 state.error = true;
             })
+            .addCase(editTaskThunk.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(editTaskThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.taskItem = action.payload;
+            })
+            .addCase(editTaskThunk.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
     }
 });
 
 export default fetchTasksList.reducer;
 export const tasksListState = state => state.tasksList;
-export {fetchTasksThunk, insertTaskThunk, fetchSingleTaskThunk};
+export {fetchTasksThunk, insertTaskThunk, fetchSingleTaskThunk, editTaskThunk};
