@@ -1706,8 +1706,7 @@
       "id": 18
     },
     {
-      "parentTaskId": "101",
-      "subTaskTitle": "ریز تسک",
+      "subTaskTitle": "ریز تسک یک",
       "subTaskEstimateTime": "36",
       "subTaskPriority": "10",
       "subTaskStartDate": "1402/12/7",

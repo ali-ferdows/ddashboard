@@ -78,6 +78,7 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .subTask_title,
@@ -94,7 +95,36 @@
     flex-basis: 50%;
 }
 
+.button_action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    padding: 10px;
+    visibility: hidden;
+    background-color: #ffffff;
+    border-radius: 20px;
+}
 
+.action_item,
+a .action_item {
+    padding: 5px 10px;
+    background-color: rgba(149, 99, 190, 0.42);
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000000;
+    font-size: 14px;
+    height: auto;
+    display: block;
+}
+
+.subTask_content:hover .button_action {
+    visibility: visible;
+}
 
 
 .not_started {

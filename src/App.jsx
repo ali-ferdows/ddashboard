@@ -5,7 +5,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {About, Guide, Homepage, NotFoundPage} from "./pages";
 import {
     AddMember, EditMember,
-    EditSession, EditTask,
+    EditSession, EditSubTask, EditTask,
     Feedback,
     GanttChart, MemberAccess, MemberInformation, SessionsCategory,
     SessionsDefinition,
@@ -41,6 +41,8 @@ function App() {
                             <Route path={'/subtask/:taskId'} element={<SubTasks />} />
                             <Route path={'/edit-task/:taskId'} element={<EditTask />} />
                             <Route path={'/gantt-chart'} element={<GanttChart />} />
+
+                            <Route path={'/edit-subTask/:subTaskId'} element={<EditSubTask />} />
 
                             <Route path={'/member-information'} element={<MemberInformation />} />
                             <Route path={'/add-member'} element={<AddMember />} />

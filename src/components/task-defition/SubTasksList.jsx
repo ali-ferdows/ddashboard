@@ -3,6 +3,7 @@ import {Col} from "react-bootstrap";
 import styles from "./SubTasks.module.css";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchSubTaskThunk, subTasksState} from "../../store/subTask_thunk.js";
+import {NavLink} from "react-router-dom";
 
 
 const SubTasksList = ({taskId, getUserName, statusTaskObj}) => {
@@ -51,6 +52,11 @@ const SubTasksList = ({taskId, getUserName, statusTaskObj}) => {
                         <div className={styles['subTask_description']}>
                             <span>توضیحات : </span>
                             <span>{subTaskItem.subTaskDescription}</span>
+                        </div>
+
+                        <div className={styles['button_action']}>
+                            <NavLink to={`/edit-subTask/${subTaskItem.id}`}><span className={styles['action_item']}>ویرایش</span></NavLink>
+                            <span className={styles['action_item']}>حذف</span>
                         </div>
                     </div>
                 </Col>

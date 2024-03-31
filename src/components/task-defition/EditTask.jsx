@@ -9,7 +9,6 @@ import {Button, Form} from "react-bootstrap";
 import Deadline from "../deadline/DeadLine.jsx";
 import {Loading} from "../index.js";
 import {endDataState, startDateState} from "../../store/deadlin.js";
-import styles from "../edit-member/EditMember.module.css";
 
 const EditTask = () => {
 
@@ -43,7 +42,7 @@ const EditTask = () => {
             status : taskItem.status,
             description : taskItem.description
         })
-    }, [taskItem])
+    }, [taskItem]);
 
     const handleChange = (event) => {
         const {name, value} = event.target;

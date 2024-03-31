@@ -30,6 +30,30 @@ const insertSubTasksThunk = createAsyncThunk(
     }
 );
 
+const fetchSingleSubTask = createAsyncThunk(
+    'subTask/singleSubTask',
+    async (subTaskId) => {
+        const response = await fetch(`/api/subTasks/${subTaskId}`);
+        const data = await response.json();
+        return data;
+    }
+);
+
+const editSubTaskThunk = createAsyncThunk(
+    'subTask/editSubTask',
+    async ({subTaskEdited, subTaskId}) =>{
+        const response = await fetch(`/api/subTasks/${subTaskId}`, {
+            method : 'PUT',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(subTaskEdited)
+        });
+        const data = await response.json();
+        return data;
+    }
+);
+
 const subTasksList = createSlice({
     name: 'subTask',
     initialState,
@@ -57,8 +81,30 @@ const subTasksList = createSlice({
                 state.loading = false;
                 state.error = true;
             })
+            .addCase(fetchSingleSubTask.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchSingleSubTask.fulfilled, (state, action) => {
+                state.loading = false;
+                state.subTasksList = action.payload;
+            })
+            .addCase(fetchSingleSubTask.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
+            .addCase(editSubTaskThunk.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(editSubTaskThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.subTasksList = action.payload;
+            })
+            .addCase(editSubTaskThunk.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
 });
 
 export default subTasksList.reducer;
 export const subTasksState = (state) => state.subTasksList;
-export { insertSubTasksThunk, fetchSubTaskThunk };
+export { insertSubTasksThunk, fetchSubTaskThunk, fetchSingleSubTask, editSubTaskThunk };

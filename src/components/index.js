@@ -18,3 +18,4 @@ export { default as TasksList } from './task-defition/TaskList';
 export { default as TaskInfo } from './task-defition/TaskInfo';
 export { default as SubTasks } from './task-defition/SubTasks';
 export { default as EditTask } from './task-defition/EditTask';
+export { default as EditSubTask } from './task-defition/EditSubTask';
