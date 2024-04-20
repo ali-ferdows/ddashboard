@@ -21,9 +21,9 @@ const CategoryList = () => {
 
     if (error) {
         return (
-            <div className={styles['error_message']}>
+            <h3 className={"error_message"}>
                 <p>در لود لیست دسته ها مشکلی اتفاق افتاده است. لطفا با پشتیبانی نرم افزار تماس بگیرید.</p>
-            </div>
+            </h3>
         )
     }
 

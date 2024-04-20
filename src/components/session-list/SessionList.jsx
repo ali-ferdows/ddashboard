@@ -39,9 +39,9 @@ const SessionList = () => {
 
             <h1 className={'header_titr'}>لیست جلسات</h1>
 
-            <div className={styles['error_message']}>
+            <h3 className={"error_message"}>
                 <p>خطایی در حین پردازش رخ داده است. لطفا با پشتیبانی نرم افزار تماس بگیرید.</p>
-            </div>
+            </h3>
         </div>
     );
   }

@@ -81,8 +81,8 @@ const EditSession = () => {
         <>
             <h1 className={'header_titr'}>ویرایش جلسه</h1>
 
-            {successMessage && <h1 className={'success_message'}>{successMessage}</h1>}
-            {errorMessage && <h1 className={'error_message'}>{errorMessage}</h1>}
+            {successMessage && <h3 className={'success_message'}>{successMessage}</h3>}
+            {errorMessage && <h3 className={'error_message'}>{errorMessage}</h3>}
 
             <Form key={sessionItem.id} onSubmit={handleSubmitFormEditSession} id={'create-session-form'}>
                 <Form.Group className={styles['form_group']}>

@@ -38,9 +38,9 @@ const MemberInformation = () => {
 
                 <h1 className={'header_titr'}>اطلاعات اعضا</h1>
 
-                <div className={styles['error_message']}>
+                <h3 className={"error_message"}>
                     <p>خطایی در حین پردازش رخ داده است. لطفا با پشتیبانی نرم افزار تماس بگیرید.</p>
-                </div>
+                </h3>
             </div>
         );
     }
@@ -90,9 +90,9 @@ const MemberInformation = () => {
                     </tbody>
                 </Table>
             ) : (
-                <p className={styles['error_message']}>
+                <h3 className={"error_message"}>
                     اطلاعاتی برای نمایش وجود ندارد.
-                </p>
+                </h3>
             )}
 
         </div>

@@ -60,8 +60,8 @@ const SessionsCategory = () => {
         <div>
             <h1 className={'header_titr'}>مدیریت دسته بندی</h1>
 
-            {successMessage && <h1 className={'success_message'}>{successMessage}</h1>}
-            {errorMessage && <h1 className={'error_message'}>{errorMessage}</h1>}
+            {successMessage && <h3 className={'success_message'}>{successMessage}</h3>}
+            {errorMessage && <h3 className={'error_message'}>{errorMessage}</h3>}
 
             <div className={styles['notice']}>
                 <ol>

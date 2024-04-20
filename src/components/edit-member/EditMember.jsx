@@ -85,7 +85,7 @@ const EditMember = () => {
             <h1 className={'header_titr'}>ویرایش اطلاعات اعضا</h1>
 
             {errorMessage && (
-                <h3 className={styles['error_message']}>{errorMessage}</h3>
+                <h3 className={"error_message"}>{errorMessage}</h3>
             )}
 
             {successMessage && (

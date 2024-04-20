@@ -99,8 +99,8 @@ const FormSession = () => {
 
     return (
         <>
-            {successMessage && <h1 className={'success_message'}>{successMessage}</h1>}
-            {errorMessage && errorMessage.map((message, index) => (<><h1 key={index} className={styles['error_message']}>{message}</h1><br/></>))}
+            {successMessage && <h3 className={'success_message'}>{successMessage}</h3>}
+            {errorMessage && errorMessage.map((message, index) => (<><h3 key={index} className={"error_message"}>{message}</h3><br/></>))}
             <Form onSubmit={handleSubmitedFormSession} id={'create-session-form'}>
                 <Form.Group className={styles['form_group']}>
                     <Form.Label htmlFor={'session_title'}>عنوان جلسه : </Form.Label>
