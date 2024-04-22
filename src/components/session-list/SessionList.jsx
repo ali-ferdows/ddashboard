@@ -21,7 +21,7 @@ const SessionList = () => {
     const nowDate = moment().format('jYYYY/jM/jD');
     const navigate = useNavigate();
     sessionList = sessionList.filter(session => {
-        const isAfterToday = session.session_date >= nowDate;
+        const isAfterToday = session.session_date >= nowDate && !session.is_deleted;
         return isAfterToday;
     });
 
@@ -107,8 +107,9 @@ const SessionList = () => {
                 {sessionList.map((session, index) => {
                     const isDone = session.isDone;
                     const isToday = session.session_date === nowDate;
+                    const isDeleted = session.is_deleted;
 
-                    return !isDone && (
+                    return !isDone && !isDeleted && (
                         <tr key={session.id}>
                             <td>
                     <span className={isToday ? styles['alarm'] : styles['no_alarm']}>

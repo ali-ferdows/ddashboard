@@ -12,12 +12,18 @@ const fetchSessionListThunk = createAsyncThunk(
 const deleteSessionThunk = createAsyncThunk(
     'sessions/deleteSession',
     async (sessionId) => {
-    const response = await fetch(`/api/scheduled-meeting/${sessionId}`, {
-        method: 'DELETE',
-    });
-    const data = await response.json();
-    return data;
-});
+        const response = await fetch(`/api/scheduled-meeting/${sessionId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ is_deleted: true })
+        });
+        const data = await response.json();
+        return data;
+    }
+);
+
 
 const editSessionThunk = createAsyncThunk(
     'sessions/editSession',

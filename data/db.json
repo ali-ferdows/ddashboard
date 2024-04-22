@@ -8,6 +8,7 @@
       "session_point": "",
       "session_reminder": "",
       "isDone": false,
+      "is_deleted": false,
       "id": 1
     },
     {
@@ -18,6 +19,7 @@
       "session_point": "",
       "session_reminder": "",
       "isDone": false,
+      "is_deleted": false,
       "id": 4
     },
     {
@@ -28,16 +30,18 @@
       "session_point": "نکته اول\nنکته دوم",
       "session_reminder": "یادداشت اول\nیادداشت دوم",
       "isDone": true,
+      "is_deleted": false,
       "id": 5
     },
     {
       "session_title": "هم اندیشی تیم فنی",
       "session_date": "1402/10/27",
       "session_time": "09:00",
-      "invited_expert": "ali@gmail.com, reza@gmail.com, hasan@gmail.com, hossein@gmail.com, karim@gmail.com, kazem@gmail.com",
+      "invited_expert": "ali@gmail.com,reza@gmail.com,hasan@gmail.com,hossein@gmail.com,karim@gmail.com,kazem@gmail.com",
       "session_point": "نکته اول\nنکته دوم\nنکته سوم",
       "session_reminder": "یادآوری اول\nیادآوری دوم\nیادآوری سوم",
       "isDone": false,
+      "is_deleted": false,
       "id": 6
     },
     {
@@ -48,6 +52,7 @@
       "session_point": "",
       "session_reminder": "",
       "isDone": true,
+      "is_deleted": false,
       "id": 7
     },
     {
@@ -58,7 +63,52 @@
       "session_point": "",
       "session_reminder": "",
       "isDone": true,
+      "is_deleted": false,
       "id": 8
+    },
+    {
+      "session_title": "فیدبک ماهیانه",
+      "session_date": "1403/2/1",
+      "session_time": "10:30",
+      "invited_expert": "reza@gmail.com",
+      "session_point": "",
+      "session_reminder": "",
+      "isDone": false,
+      "is_deleted": false,
+      "id": 9
+    },
+    {
+      "session_title": "فیدبک ماهیانه",
+      "session_date": "1403/2/2",
+      "session_time": "10:00",
+      "invited_expert": "ali@gmail.com,hasan@gmail.com",
+      "session_point": "",
+      "session_reminder": "",
+      "isDone": false,
+      "id": 10,
+      "is_deleted": true
+    },
+    {
+      "session_title": "هم اندیشی تیم فنی 1",
+      "session_date": "1403/2/4",
+      "session_time": "12:00",
+      "invited_expert": "",
+      "session_point": "",
+      "session_reminder": "",
+      "isDone": false,
+      "is_deleted": false,
+      "id": 11
+    },
+    {
+      "session_title": "هم اندیشی تیم فنی",
+      "session_date": "1403/2/8",
+      "session_time": "17:40",
+      "invited_expert": "narges.akbari@example.com,mohammad.zaare@example.com,mohammadi@example.com,mohammad.ahmadi@example.com",
+      "session_point": "نکات مهم جلسه",
+      "session_reminder": "یادآوری",
+      "isDone": false,
+      "is_deleted": false,
+      "id": 12
     }
   ],
   "category_session": [

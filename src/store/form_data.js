@@ -9,6 +9,7 @@ const initialState = {
         session_point: '',
         session_reminder: '',
         isDone: false,
+        is_deleted: false,
     }
 };
 

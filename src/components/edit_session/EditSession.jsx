@@ -8,16 +8,22 @@ import {useParams} from "react-router";
 import {editSessionThunk, fetchSessionListThunk} from "../../store/fetchSessionList.js";
 import {Loading} from "../index.js";
 import {PersonPlus} from "react-bootstrap-icons";
+import {fetchAllMembersThunk, memberState} from "../../store/member.js";
+import {setSelectedExperts} from "../../store/guest_experts.js";
 
 const EditSession = () => {
+    const [newMembers, setNewMembers] = useState([]);
     const dispatch = useDispatch();
     const {sessionId} = useParams();
     const {sessionList} = useSelector(state => state.sessionList);
+    const {membersList} = useSelector(memberState);
     const [sessionItem, setSessionItem] = useState([]);
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const selectedExperts = useSelector(state => state.InvitedExperts.selectedExperts);
     useEffect(() => {
-        dispatch(fetchSessionListThunk())
+        dispatch(fetchSessionListThunk());
+        dispatch(fetchAllMembersThunk());
     }, []);
 
     useEffect(() => {
@@ -29,25 +35,23 @@ const EditSession = () => {
         }
     }, [sessionList, sessionId]);
 
-    const [newEmail, setNewEmail] = useState('');
-    const [isValidEmail, setIsValidEmail] = useState(true);
+    const handleAddEmail = (event) => {
+        const selectedOptions = Array.from(event.target.selectedOptions, (option) => option.value);
+        dispatch(setSelectedExperts(selectedOptions));
 
-    const handleAddEmail = () => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const isEmailValid = emailRegex.test(newEmail);
-
-        if (newEmail && isEmailValid) {
-            if (!sessionItem.invited_expert.includes(newEmail)) {
-                const updatedInvitedExpert = sessionItem.invited_expert.concat(",",newEmail);
-                setSessionItem(prevState => ({
-                    ...prevState,
-                    invited_expert: updatedInvitedExpert
-                }));
-            }
-            setIsValidEmail(true);
-        } else {
-            setIsValidEmail(false);
-        }
+        // if (newEmail) {
+        //     let updatedInvitedExpert = [];
+        //     if (sessionItem.invited_expert) {
+        //         updatedInvitedExpert = sessionItem.invited_expert.push(newEmail);
+        //     }else{
+        //         updatedInvitedExpert = newEmail;
+        //     }
+        //
+        //     setSessionItem(prevState => ({
+        //         ...prevState,
+        //         invited_expert: updatedInvitedExpert
+        //     }));
+        // }
     };
 
     const handleChange = (e) => {
@@ -61,15 +65,27 @@ const EditSession = () => {
 
     const handleSubmitFormEditSession = async (event) => {
         event.preventDefault();
-        const result = await dispatch(editSessionThunk({sessionItem, sessionId}));
-        if (result.meta.requestStatus === "fulfilled") {
-            setSuccessMessage("عالی! جلسه با موفقیت ویرایش شد.");
-            setErrorMessage("");
-        }else{
-            setErrorMessage("ویرایش اطلاعات با مشکل مواجه گردید. لطفا بعدا مجدد تلاش نمایید.");
-        }
-        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+    const invitedExpertArray = sessionItem.invited_expert.split(",");
+    const newEmails = selectedExperts.concat(invitedExpertArray);
+    const nonDuplicateNewEmail = Array.from(new Set(newEmails));
+    const updatedEmails = nonDuplicateNewEmail.join(',');
+
+    const updatedSessionItem = {
+        ...sessionItem,
+        invited_expert: updatedEmails,
+    };
+
+    const result = await dispatch(editSessionThunk({sessionItem: updatedSessionItem, sessionId}));
+    if (result.meta.requestStatus === "fulfilled") {
+        setSuccessMessage("عالی! جلسه با موفقیت ویرایش شد.");
+        setErrorMessage("");
+    } else {
+        setErrorMessage("ویرایش اطلاعات با مشکل مواجه گردید. لطفا بعدا مجدد تلاش نمایید.");
     }
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+}
+
 
     if (!sessionItem) {
         return (
@@ -104,22 +120,36 @@ const EditSession = () => {
                     </div>
                 </Form.Group>
 
-                <TableOfEmailsEdit emailList={sessionItem.invited_expert} />
+                <TableOfEmailsEdit setSessionItem={setSessionItem} emailList={sessionItem.invited_expert} />
 
                 <Form.Group className={`${styles['form_group']} ${styles['expert_selector']}`}>
-                    <Form.Label htmlFor={'invited_expert'}>افزودن : </Form.Label>
+                <Form.Select
+                    aria-label="Select expert"
+                    id={'invited_expert'}
+                    className={styles['invited_expert_field']}
+                    onChange={handleAddEmail}
+                    multiple
+                    name={'invited_expert'}
+                >
+                    <option value="0" disabled={true} selected={true}>انتخاب نمایید ...</option>
+                    {membersList.map(member => (
+                        <option key={member.id} value={member.email}>{member.first_name} {member.last_name}</option>
+                    ))}
+                </Form.Select>
 
-                    <Form.Control
-                        type="email"
-                        className={styles['email_other_guests']}
-                        placeholder="test@email.com"
-                        value={newEmail}
-                        onChange={(e) => setNewEmail(e.target.value)}
-                        isInvalid={!isValidEmail}
-                    />
-                    <Form.Control.Feedback type="invalid" className={styles['feedback_message']}>
-                        فرمت ایمیل نامعتبر است.
-                    </Form.Control.Feedback>
+                    {/*<Form.Label htmlFor={'invited_expert'}>افزودن : </Form.Label>*/}
+
+                    {/*<Form.Control*/}
+                    {/*    type="email"*/}
+                    {/*    className={styles['email_other_guests']}*/}
+                    {/*    placeholder="test@email.com"*/}
+                    {/*    value={newEmail}*/}
+                    {/*    onChange={(e) => setNewEmail(e.target.value)}*/}
+                    {/*    isInvalid={!isValidEmail}*/}
+                    {/*/>*/}
+                    {/*<Form.Control.Feedback type="invalid" className={styles['feedback_message']}>*/}
+                    {/*    فرمت ایمیل نامعتبر است.*/}
+                    {/*</Form.Control.Feedback>*/}
                     <PersonPlus size={25} onClick={handleAddEmail} />
 
                 </Form.Group>

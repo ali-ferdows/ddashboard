@@ -10,10 +10,12 @@ import {selectDate} from "../../store/selected_session_date.js";
 import {setModalShow} from "../../store/modal_show.js";
 import {setSelectedExperts} from "../../store/guest_experts.js";
 import {selectFormData, setFormData} from "../../store/form_data.js";
+import {fetchAllMembersThunk, memberState} from "../../store/member.js";
 
 const FormSession = () => {
 
     const selectedExperts = useSelector(state => state.InvitedExperts.selectedExperts);
+    const {membersList} = useSelector(memberState);
     const date = useSelector(selectDate);
     const dispatch = useDispatch();
     const formData = useSelector(selectFormData);
@@ -26,9 +28,13 @@ const FormSession = () => {
     };
 
     useEffect(() => {
+        dispatch(fetchAllMembersThunk());
+    },[]);
+
+    useEffect(() => {
         dispatch(setFormData({
           ...formData,
-          invited_expert: selectedExperts.join(', '),
+          invited_expert: selectedExperts.join(','),
         }));
     }, [selectedExperts]);
 
@@ -126,15 +132,12 @@ const FormSession = () => {
                         className={styles['invited_expert_field']}
                         onChange={handleSelectChange}
                         multiple
-                        value={selectedExperts}
                         name={'invited_expert'}
                     >
-                        <option value="ali@gmail.com">علی</option>
-                        <option value="reza@gmail.com">رضا</option>
-                        <option value="hasan@gmail.com">حسن</option>
-                        <option value="hossein@gmail.com">حسین</option>
-                        <option value="karim@gmail.com">کریم</option>
-                        <option value="kazem@gmail.com">کاظم</option>
+                        <option value="0" disabled={true} selected={true}>انتخاب نمایید ...</option>
+                        {membersList.map(member => (
+                            <option key={member.id} value={member.email}>{member.first_name} {member.last_name}</option>
+                        ))}
                     </Form.Select>
 
                     <AddEmail />
