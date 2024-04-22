@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllMembersThunk, memberState} from "../../store/member.js";
-import {statusTaskObj} from "../../Layout/index.js";
 import {NotFoundPage} from "../../pages/index.js";
 import {editTaskThunk, fetchSingleTaskThunk} from "../../store/task_thunk.js";
 import {Button, Form} from "react-bootstrap";
 import Deadline from "../deadline/DeadLine.jsx";
 import {Loading} from "../index.js";
 import {endDataState, startDateState} from "../../store/deadlin.js";
+import {NavLink} from "react-router-dom";
 
 const EditTask = () => {
 
@@ -40,9 +40,22 @@ const EditTask = () => {
             endDate : taskItem.endDate,
             expert : taskItem.expert,
             status : taskItem.status,
-            description : taskItem.description
+            description : taskItem.description,
+            is_deleted: taskItem.is_deleted
         })
     }, [taskItem]);
+
+    if (taskEdited.is_deleted) {
+        return (
+            <>
+                <h1 className={'header_titr'}>ویرایش تسک « {taskItem.task_title} »</h1>
+
+                <h3 className="error_message">این تسک حذف شده است.</h3>
+
+                <NavLink to={'/tasks-list'} className={'d-block text-primary-emphasis text-center p-4 shadow'}>بازگشت به لیست تسک ها</NavLink>
+            </>
+        )
+    }
 
     const handleChange = (event) => {
         const {name, value} = event.target;

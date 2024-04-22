@@ -1665,6 +1665,7 @@
       "expert": "ali_sadeghi",
       "status": "not_started",
       "description": "توضیحات جدید",
+      "is_deleted": true,
       "id": 101
     }
   ],

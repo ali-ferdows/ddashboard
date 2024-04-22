@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import styles from './TaskList.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchTasksThunk, tasksListState} from "../../store/task_thunk.js";
+import {deleteTaskThunk, fetchTasksThunk, tasksListState} from "../../store/task_thunk.js";
 import {Loading} from "../index.js";
 import {
     ChevronLeft,
@@ -28,6 +28,8 @@ const TaskList = () => {
     const pageNumber = useSelector(pageNumberTasksState);
     const formData = useSelector(taskFilterState);
     const dispatch = useDispatch();
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         dispatch(fetchAllMembersThunk());
@@ -55,6 +57,22 @@ const TaskList = () => {
         dispatch(decrementPageNumberTasks())
     }
 
+    const handleDeleteTask = async (taskId) => {
+        const isConfirmed = window.confirm('آیا مطمئنید که می‌خواهید این تسک را حذف کنید؟');
+
+        if (isConfirmed) {
+            const result = await dispatch(deleteTaskThunk(taskId));
+            if (result.meta.requestStatus === "fulfilled") {
+                setSuccessMessage('عالی! این تسک با موفقیت حذف شد.');
+                setErrorMessage("");
+            }else{
+                setErrorMessage("حذف تسک با مشکل مواجه گردید. لطفا بعدا مجدد تلاش نمایید.");
+            }
+
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
+    }
+
     if (error) {
         return (
             <div>
@@ -71,6 +89,14 @@ const TaskList = () => {
             <h1 className={'header_titr'}>لیست تسک ها</h1>
 
             <Funnel size={30} className={styles['filter_icon']} onClick={handleShowFilterForm} />
+
+            {errorMessage && (
+                <h3 className={'error_message'}>{errorMessage}</h3>
+            )}
+
+            {successMessage && (
+                <h3 className={'success_message'}>{successMessage}</h3>
+            )}
 
             {showFilter && (
                 <TasksFilter />
@@ -102,7 +128,7 @@ const TaskList = () => {
                                     <NavLink to={`/task-info/${task.id}`}><span className={styles['body_item']}>جزئیات</span></NavLink>
                                     <NavLink to={`/subtask/${task.id}`}><span className={styles['body_item']}>افزودن زیرتسک</span></NavLink>
                                     <NavLink to={`/edit-task/${task.id}`}><span className={styles['body_item']}>ویرایش</span></NavLink>
-                                    <span className={styles['body_item']}>حذف</span>
+                                    <span className={styles['body_item']} onClick={() => handleDeleteTask(task.id)}>حذف</span>
                                 </div>
                             </div>
                         </Col>

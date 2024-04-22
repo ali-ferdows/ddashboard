@@ -9,7 +9,8 @@ const initialState = {
         endDate : '',
         expert : '',
         status : '',
-        description : ''
+        description : '',
+        is_deleted: false
     }
 };
 

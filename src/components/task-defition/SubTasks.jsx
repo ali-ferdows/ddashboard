@@ -10,6 +10,7 @@ import {Col, Row} from "react-bootstrap";
 import SubTasksList from "./SubTasksList.jsx";
 import AddSubTasksForm from "./AddSubTasksForm.jsx";
 import {statusTaskObj} from "../../Layout/index.js";
+import {NavLink} from "react-router-dom";
 
 const SubTasks = () => {
 
@@ -26,6 +27,18 @@ const SubTasks = () => {
         dispatch(fetchSingleTaskThunk(taskId));
         dispatch(fetchAllMembersThunk());
     }, []);
+
+    if (taskItem.is_deleted) {
+        return (
+            <>
+                <h1 className={'header_titr'}>افزودن زیر تسک</h1>
+                
+                <h3 className="error_message">این تسک حذف شده است.</h3>
+                
+                <NavLink to={'/tasks-list'} className={'d-block text-primary-emphasis text-center p-4 shadow'}>بازگشت به لیست تسک ها</NavLink>
+            </>
+        )
+    }
 
     const getUserName = (username) => {
         const user = membersList.find(member => member.user_name === username);

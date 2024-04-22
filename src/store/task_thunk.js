@@ -4,7 +4,8 @@ const initialState = {
     tasksList : [],
     loading : false,
     error : false,
-    taskItem : []
+    taskItem : [],
+    deleteItem: ""
 }
 
 const fetchTasksThunk = createAsyncThunk(
@@ -16,6 +17,7 @@ const fetchTasksThunk = createAsyncThunk(
         let endDateParam = '';
         let expertParam = '';
         let statusParam = '';
+        let isDeletedParam = '&is_deleted=false';
 
         if (formData.task_title) {
             titleParam = `q=${formData.task_title}`;
@@ -37,7 +39,7 @@ const fetchTasksThunk = createAsyncThunk(
             statusParam = `&status=${formData.status}`;
         }
 
-        const response = await fetch(`/api/tasks?_sort=id&_order=desc&_page=${pageNumber}&${titleParam}${startDateParam}${endDateParam}${expertParam}${statusParam}`);
+        const response = await fetch(`/api/tasks?_sort=id&_order=desc&_page=${pageNumber}&${titleParam}${startDateParam}${endDateParam}${expertParam}${statusParam}${isDeletedParam}`);
         let data = await response.json();
         return data;
     }
@@ -80,7 +82,22 @@ const editTaskThunk = createAsyncThunk(
         const Data = response.json();
         return Data;
     }
-)
+);
+
+const deleteTaskThunk = createAsyncThunk(
+    'task/deleteTask',
+    async (taskId) => {
+        const response = await fetch(`/api/tasks/${taskId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ is_deleted: true })
+        });
+        const data = await response.json();
+        return data;
+    }
+);
 
 const fetchTasksList = createSlice({
     name : 'fetchTask',
@@ -131,9 +148,20 @@ const fetchTasksList = createSlice({
                 state.loading = false;
                 state.error = true;
             })
+            .addCase(deleteTaskThunk.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(deleteTaskThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.deleteItem = action.payload;
+            })
+            .addCase(deleteTaskThunk.rejected, (state, action) => {
+                state.loading = false;
+                state.deleteItem = action.payload;
+            })
     }
 });
 
 export default fetchTasksList.reducer;
 export const tasksListState = state => state.tasksList;
-export {fetchTasksThunk, insertTaskThunk, fetchSingleTaskThunk, editTaskThunk};
+export {fetchTasksThunk, insertTaskThunk, fetchSingleTaskThunk, editTaskThunk, deleteTaskThunk};
