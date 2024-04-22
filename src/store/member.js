@@ -9,7 +9,7 @@ const initialState = {
 const fetchAllMembersThunk = createAsyncThunk(
   "member/fetchAllMembers",
   async () => {
-    const response = await fetch("/api/users");
+    const response = await fetch("/api/users?is_deleted=false");
     const data = await response.json();
     return data;
   }
@@ -19,7 +19,11 @@ const deleteMemberThunk = createAsyncThunk(
     'member/deleteMember',
     async (memberId) => {
         const response = await fetch(`/api/users/${memberId}`, {
-            method: 'DELETE',
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ is_deleted: true })
         });
         const data = await response.json();
         return data;

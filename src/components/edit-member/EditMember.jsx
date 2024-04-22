@@ -5,10 +5,11 @@ import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {editMemberThunk, fetchSingleMemberThunk, memberState} from "../../store/member.js";
 import {Button, Form} from "react-bootstrap";
+import {NavLink} from "react-router-dom";
 
 const EditMember = () => {
     const {memberId} = useParams();
-    const {membersList, loading, error} = useSelector(memberState);
+    const {membersList} = useSelector(memberState);
     const dispatch = useDispatch();
     const [memberInfo, setMemberInfo] = useState({
         first_name: '',
@@ -17,7 +18,8 @@ const EditMember = () => {
         gender: '',
         user_id: '',
         user_name: '',
-        email: ''
+        email: '',
+        is_deleted: ''
     });
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -33,6 +35,18 @@ const EditMember = () => {
             setMemberInfo(membersList[0]); // Assuming the API returns a single member based on memberId
         }
     }, [membersList]);
+
+    if (memberInfo.is_deleted) {
+        return (
+            <>
+                <h1 className={'header_titr'}>ویرایش اطلاعات اعضا</h1>
+
+                <h3 className="error_message">این کاربر حذف شده است.</h3>
+
+                <NavLink to={'/member-information'} className={'d-block text-primary-emphasis text-center p-4 shadow'}>بازگشت به لیست اعضا</NavLink>
+            </>
+        )
+    }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
