@@ -13,7 +13,6 @@ export { default as SessionsCategory } from './sessions-category/SessionsCategor
 export { default as MemberInformation } from './member-information/MemberInformation';
 export { default as AddMember } from './add-member/AddMember';
 export { default as EditMember } from './edit-member/EditMember';
-export { default as MemberAccess } from './member-access/MemberAccess';
 export { default as TasksList } from './task-defition/TaskList';
 export { default as TaskInfo } from './task-defition/TaskInfo';
 export { default as SubTasks } from './task-defition/SubTasks';
