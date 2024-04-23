@@ -27,7 +27,6 @@ const Sidebar = () => {
                         <nav className={styles['child_item']}>
                             <NavLink to={'/tasks-list'}>لیست تسک ها</NavLink>
                             <NavLink to={'/task-definition'}>تعریف تسک</NavLink>
-                            <NavLink to={'/gantt-chart'}>نمودار گانت</NavLink>
                         </nav>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -35,9 +34,10 @@ const Sidebar = () => {
                     <Accordion.Header> گزارش گیری و آمار </Accordion.Header>
                     <Accordion.Body>
                         <nav className={styles['child_item']}>
-                            <NavLink to={'/'}>گزارش پیشرفت</NavLink>
-                            <NavLink to={'/'}>آمار تسک ها</NavLink>
-                            <NavLink to={'/'}>نمودار میله ای</NavLink>
+                            <NavLink to={'/project-progress-report'}>گزارش پیشرفت پروژه</NavLink>
+                            <NavLink to={'/tasks-report'}>گزارش تسک ها</NavLink>
+                            <NavLink to={'/performance-report'}>گزارش عملکرد</NavLink>
+                            <NavLink to={'/gantt-chart'}>نمودار گانت</NavLink>
                         </nav>
                     </Accordion.Body>
                 </Accordion.Item>

@@ -7,10 +7,10 @@ import {
     AddMember, EditMember,
     EditSession, EditSubTask, EditTask,
     Feedback,
-    GanttChart, MemberAccess, MemberInformation, SessionsCategory,
+    GanttChart, MemberInformation, PerformanceReport, ProjectProgressReport, SessionsCategory,
     SessionsDefinition,
     SessionsList, SubTasks,
-    TaskDefinition, TaskInfo, TasksList,
+    TaskDefinition, TaskInfo, TasksList, TasksReport,
     Warnings
 } from "./components";
 import {Provider} from "react-redux";
@@ -40,14 +40,16 @@ function App() {
                             <Route path={'/task-info/:taskId'} element={<TaskInfo />} />
                             <Route path={'/subtask/:taskId'} element={<SubTasks />} />
                             <Route path={'/edit-task/:taskId'} element={<EditTask />} />
-                            <Route path={'/gantt-chart'} element={<GanttChart />} />
 
                             <Route path={'/edit-subTask/:subTaskId'} element={<EditSubTask />} />
 
                             <Route path={'/member-information'} element={<MemberInformation />} />
                             <Route path={'/add-member'} element={<AddMember />} />
                             <Route path={'/edit-member/:memberId'} element={<EditMember />} />
-                            <Route path={'/member-access'} element={<MemberAccess />} />
+                            <Route path={'/project-progress-report'} element={<ProjectProgressReport />} />
+                            <Route path={'/tasks-report'} element={<TasksReport />} />
+                            <Route path={'/performance-report'} element={<PerformanceReport />} />
+                            <Route path={'/gantt-chart'} element={<GanttChart />} />
                         </Route>
                         <Route path={'/guide'} element={<Guide />} />
                         <Route path={'/about'} element={<About />} />
