@@ -9,7 +9,7 @@ const initialState = {
 const fetchSubTaskThunk = createAsyncThunk(
     'subTask/getSubTask',
     async (parentTaskId) => {
-        const response = await fetch(`/api/subTasks?parentTaskId=${parentTaskId}`);
+        const response = await fetch(`/api/subTasks?parentTaskId=${parentTaskId}&is_deleted=false`);
         const data = await response.json();
         return data;
     }
@@ -53,6 +53,21 @@ const editSubTaskThunk = createAsyncThunk(
         return data;
     }
 );
+
+const deleteSubTaskThunk = createAsyncThunk(
+    'subTask/deleteTask',
+    async (subTaskId) => {
+        const response = await fetch(`/api/subTasks/${subTaskId}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({is_deleted: true})
+        });
+        const data = await response.json();
+        return data;
+    }
+)
 
 const subTasksList = createSlice({
     name: 'subTask',
@@ -103,8 +118,19 @@ const subTasksList = createSlice({
                 state.loading = false;
                 state.error = true;
             })
+            .addCase(deleteSubTaskThunk.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(deleteSubTaskThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.subTasksList = action.payload;
+            })
+            .addCase(deleteSubTaskThunk.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
 });
 
 export default subTasksList.reducer;
 export const subTasksState = (state) => state.subTasksList;
-export { insertSubTasksThunk, fetchSubTaskThunk, fetchSingleSubTask, editSubTaskThunk };
+export { insertSubTasksThunk, fetchSubTaskThunk, fetchSingleSubTask, editSubTaskThunk, deleteSubTaskThunk };

@@ -8,6 +8,7 @@ import {editSubTaskThunk, fetchSingleSubTask, subTasksState} from "../../store/s
 import {fetchAllMembersThunk, memberState} from "../../store/member.js";
 import {endDataState, startDateState} from "../../store/deadlin.js";
 import {NotFoundPage} from "../../pages/index.js";
+import {NavLink} from "react-router-dom";
 
 const EditSubTask = () => {
 
@@ -31,8 +32,8 @@ const EditSubTask = () => {
     }, [subTaskId]);
 
     useEffect(() => {
-        console.log(subTasksList);
         setSubTaskEdited({
+            subTaskParentId : subTasksList.parentTaskId,
             subTaskTitle : subTasksList.subTaskTitle,
             subTaskEstimateTime : subTasksList.subTaskEstimateTime,
             subTaskPriority : subTasksList.subTaskPriority,
@@ -40,9 +41,22 @@ const EditSubTask = () => {
             subTaskEndDate : subTasksList.subTaskEndDate,
             subTaskExpert : subTasksList.subTaskExpert,
             subTaskStatus : subTasksList.subTaskStatus,
-            subTaskDescription : subTasksList.subTaskDescription
+            subTaskDescription : subTasksList.subTaskDescription,
+            subTaskIsDeleted : subTasksList.is_deleted
         });
     }, [subTasksList]);
+
+    if (subTaskEdited.subTaskIsDeleted) {
+        return (
+            <>
+                <h1 className={'header_titr'}>ویرایش زیر تسک « {subTasksList.subTaskTitle} »</h1>
+
+                <h3 className="error_message">این زیر تسک حذف شده است.</h3>
+
+                <NavLink to={`/task-info/${subTaskEdited.subTaskParentId}`} className={'d-block text-primary-emphasis text-center p-4 shadow'}>بازگشت به لیست زیر تسک ها</NavLink>
+            </>
+        )
+    }
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -72,7 +86,7 @@ const EditSubTask = () => {
 
     return (
         <div>
-            <h1 className={'header_titr'}>ویرایش تسک « {subTasksList.subTaskTitle} »</h1>
+            <h1 className={'header_titr'}>ویرایش زیر تسک « {subTasksList.subTaskTitle} »</h1>
 
             {errorMessage && (
                 <h3 className={'error_message'}>{errorMessage}</h3>

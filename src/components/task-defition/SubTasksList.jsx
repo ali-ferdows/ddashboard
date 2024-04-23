@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Col} from "react-bootstrap";
 import styles from "./SubTasks.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchSubTaskThunk, subTasksState} from "../../store/subTask_thunk.js";
+import {deleteSubTaskThunk, fetchSubTaskThunk, subTasksState} from "../../store/subTask_thunk.js";
 import {NavLink} from "react-router-dom";
 
 
@@ -11,10 +11,28 @@ const SubTasksList = ({taskId, getUserName, statusTaskObj}) => {
     const {subTasksList} = useSelector(subTasksState);
     const dispatch = useDispatch();
     const subTasksListLength = subTasksList.length ? subTasksList.length : 0;
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         dispatch(fetchSubTaskThunk(taskId));
     }, [subTasksListLength]);
+
+    const handleDeleteSubTask = async (subTaskId) => {
+        const isConfirmed = window.confirm('آیا مطمئنید که می‌خواهید این زیر تسک را حذف کنید؟');
+
+        if (isConfirmed) {
+            const result = await dispatch(deleteSubTaskThunk(subTaskId));
+            if (result.meta.requestStatus === "fulfilled") {
+                setSuccessMessage('عالی! این زیر تسک با موفقیت حذف شد.');
+                setErrorMessage("");
+            }else{
+                setErrorMessage("حذف زیر تسک با مشکل مواجه گردید. لطفا بعدا مجدد تلاش نمایید.");
+            }
+
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        }
+    }
 
     return (
         <>
@@ -56,7 +74,7 @@ const SubTasksList = ({taskId, getUserName, statusTaskObj}) => {
 
                         <div className={styles['button_action']}>
                             <NavLink to={`/edit-subTask/${subTaskItem.id}`}><span className={styles['action_item']}>ویرایش</span></NavLink>
-                            <span className={styles['action_item']}>حذف</span>
+                            <span className={styles['action_item']} onClick={() => handleDeleteSubTask(subTaskItem.id)}>حذف</span>
                         </div>
                     </div>
                 </Col>
