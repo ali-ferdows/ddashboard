@@ -1,0 +1,7 @@
+.pie_charts {
+    max-height: 500px;
+}
+
+.pie_charts canvas {
+    margin: 10px auto;
+}
