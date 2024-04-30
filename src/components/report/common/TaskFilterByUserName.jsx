@@ -71,7 +71,8 @@ const TaskFilterByUserName = () => {
         const filterParams = {
             subTaskExpert: formData['expert'],
             subTaskStartDate: formData['from_date'],
-            subTaskEndDate: formData['to_date']
+            subTaskEndDate: formData['to_date'],
+            subTaskStatus: '',
         };
 
         dispatch(fetchSubTaskMemberThunk(filterParams));

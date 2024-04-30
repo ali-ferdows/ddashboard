@@ -13,7 +13,7 @@ const TasksReport = () => {
     const [subTaskCounts, setSubTaskCounts] = useState({ completed: 0, doing: 0, waiting: 0 });
 
     useEffect(() => {
-    if (theMemberTasksList.length > 0 && theMemberSubTasksList.length > 0) {
+    if (theMemberTasksList.length > 0 || theMemberSubTasksList.length > 0) {
         const tasksStatusCounts = _.countBy(theMemberTasksList, 'status');
         const subTasksStatusCounts = _.countBy(theMemberSubTasksList, 'subTaskStatus');
 
