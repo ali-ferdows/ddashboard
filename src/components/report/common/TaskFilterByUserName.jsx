@@ -18,9 +18,6 @@ const TaskFilterByUserName = () => {
     const dispatch = useDispatch();
     const [period, setPeriod] = useState('');
 
-    const { theMemberTasksList } = useSelector(state => state.theMemberTasks);
-    const { theMemberSubTasksList } = useSelector(state => state.theMemberTasks);
-
     useEffect(() => {
         dispatch(fetchAllMembersThunk())
     }, []);
@@ -69,7 +66,7 @@ const TaskFilterByUserName = () => {
     }
 
     useEffect(() => {
-        const pageNumber = 1;
+        const pageNumber = '';
         dispatch(fetchTasksThunk({pageNumber, formData}));
         const filterParams = {
             subTaskExpert: formData['expert'],

@@ -33,9 +33,6 @@ const TasksReport = () => {
 
     }
 
-    console.log(theMemberTasksList);
-    console.log(theMemberSubTasksList);
-
 }, [theMemberTasksList, theMemberSubTasksList]);
 
 
