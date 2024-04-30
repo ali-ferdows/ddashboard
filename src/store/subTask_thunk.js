@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
     subTasksList : [],
@@ -15,6 +16,33 @@ const fetchSubTaskThunk = createAsyncThunk(
     }
 );
 
+const fetchSubTaskMemberThunk = createAsyncThunk(
+    'subTask/getSubTaskMember',
+    async ({subTaskExpert, subTaskStartDate, subTaskEndDate}) => {
+
+        let startDateParam = '';
+        let endDateParam = '';
+        let expertParam = '';
+        let isDeletedParam = '&is_deleted=false';
+
+        if (subTaskStartDate) {
+            startDateParam = `&subTaskStartDate_gte=${subTaskStartDate}`;
+        }
+
+        if (subTaskEndDate) {
+            endDateParam = `&subTaskEndDate_lte=${subTaskEndDate}`;
+        }
+
+        if (subTaskExpert) {
+            expertParam = `&subTaskExpert=${subTaskExpert}`;
+        }
+
+        const response = await fetch(`/api/subTasks?_sort=id&_order=desc${expertParam}${startDateParam}${endDateParam}${isDeletedParam}`);
+        const data = await response.json();
+        return data;
+    }
+)
+
 const insertSubTasksThunk = createAsyncThunk(
     'subTask/subTaskInsert',
     async (subTasksData) => {
@@ -25,7 +53,7 @@ const insertSubTasksThunk = createAsyncThunk(
             },
             body: JSON.stringify(subTasksData),
         });
-        const data = response.json();
+        const data = await response.json();
         return data;
     }
 );
@@ -129,8 +157,19 @@ const subTasksList = createSlice({
                 state.loading = false;
                 state.error = true;
             })
+            .addCase(fetchSubTaskMemberThunk.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchSubTaskMemberThunk.fulfilled, (state, action) => {
+                state.loading = false;
+                state.subTasksList = action.payload;
+            })
+            .addCase(fetchSubTaskMemberThunk.rejected, (state) => {
+                state.loading = false;
+                state.error = true;
+            })
 });
 
 export default subTasksList.reducer;
 export const subTasksState = (state) => state.subTasksList;
-export { insertSubTasksThunk, fetchSubTaskThunk, fetchSingleSubTask, editSubTaskThunk, deleteSubTaskThunk };
+export { insertSubTasksThunk, fetchSubTaskThunk, fetchSubTaskMemberThunk, fetchSingleSubTask, editSubTaskThunk, deleteSubTaskThunk };

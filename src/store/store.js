@@ -14,6 +14,7 @@ import taskFilterFormReducer from './period_filter_task.js';
 import pageNumberTasksReducer from './page_number_tasks.js';
 import subTasksListReducer from './subTask_thunk.js';
 import deadLineReducer from './deadlin.js';
+import theMemberTasksReducer from './tasks_subTasks_list.js';
 
 export const store = configureStore({
     reducer: {
@@ -32,5 +33,6 @@ export const store = configureStore({
         pageNumberTasks : pageNumberTasksReducer,
         subTasksList : subTasksListReducer,
         deadLine : deadLineReducer,
+        theMemberTasks : theMemberTasksReducer,
     }
 })

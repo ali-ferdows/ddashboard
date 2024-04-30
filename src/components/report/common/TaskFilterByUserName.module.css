@@ -1,0 +1,37 @@
+.task_filter_form {
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.task_filter_form label {
+    margin-left: 20px;
+}
+
+.task_filter_form > div {
+    margin-left: 20px;
+}
+
+.expert {
+    display: flex;
+}
+
+.expert select {
+    max-width: 200px;
+}
+
+.deadline span {
+    padding: 10px 30px;
+    border: 1px solid #9563be;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.deadline span:hover,
+.deadline span:active,
+.deadline span:focus,
+.active {
+    background-color: rgba(149, 99, 190, 0.86);
+    color: #ffffff;
+}
