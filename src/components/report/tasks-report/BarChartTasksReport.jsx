@@ -58,7 +58,7 @@ const BarChartTasksReport = ({taskCounts, subTaskCounts}) => {
             {
                 label: 'تعداد تسک ها',
                 data: [totalCompleted, totalDoing, totalWaiting, totalNotStarted],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                backgroundColor: 'rgb(149,99,190)',
             },
         ],
     };

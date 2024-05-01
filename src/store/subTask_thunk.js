@@ -18,11 +18,12 @@ const fetchSubTaskThunk = createAsyncThunk(
 
 const fetchSubTaskMemberThunk = createAsyncThunk(
     'subTask/getSubTaskMember',
-    async ({subTaskExpert, subTaskStartDate, subTaskEndDate}) => {
+    async ({subTaskExpert, subTaskStartDate, subTaskEndDate, subTaskStatus}) => {
 
         let startDateParam = '';
         let endDateParam = '';
         let expertParam = '';
+        let statusParam = '';
         let isDeletedParam = '&is_deleted=false';
 
         if (subTaskStartDate) {
@@ -37,7 +38,11 @@ const fetchSubTaskMemberThunk = createAsyncThunk(
             expertParam = `&subTaskExpert=${subTaskExpert}`;
         }
 
-        const response = await fetch(`/api/subTasks?_sort=id&_order=desc${expertParam}${startDateParam}${endDateParam}${isDeletedParam}`);
+        if (subTaskStatus) {
+            statusParam = `&subTaskStatus=${subTaskStatus}`;
+        }
+
+        const response = await fetch(`/api/subTasks?_sort=id&_order=desc${expertParam}${startDateParam}${endDateParam}${isDeletedParam}${statusParam}`);
         const data = await response.json();
         return data;
     }
